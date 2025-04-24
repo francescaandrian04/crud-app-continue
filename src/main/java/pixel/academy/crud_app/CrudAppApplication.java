@@ -19,11 +19,17 @@ public class CrudAppApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 //			createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+//			createMultipleStudents(studentDAO);
+			readStudent(studentDAO);
 		};
 	}
 
+	private void readStudent(StudentDAO studentDAO) {
+
+	}
+
 	private void createStudent(StudentDAO studentDAO) {
+
 		// creating many Student objects
 		System.out.println("Creating 4 student object ...");
 		Student newStudent = new Student("John", "Doe", "john@pixelacademy.md");
