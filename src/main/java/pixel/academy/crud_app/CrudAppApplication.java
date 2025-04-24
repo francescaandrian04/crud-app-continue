@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import pixel.academy.crud_app.dao.StudentDAO;
 import pixel.academy.crud_app.entity.Student;
 
+import java.util.List;
+
 
 @SpringBootApplication
 public class CrudAppApplication {
@@ -20,31 +22,11 @@ public class CrudAppApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 //			createMultipleStudents(studentDAO);
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+//			queryForStudents(studentDAO);
+			queryForStudentsByLastName(studentDAO);
+
 		};
-	}
-
-	private void readStudent(StudentDAO studentDAO) {
-
-		// create a Student object
-		System.out.println("Creating new student object ... ");
-		Student newStudent = new Student("Mircea", "Popescu", "mircea@pixel.academy");
-
-		// save the Student object to the database
-		System.out.println("Saving the student ...");
-		studentDAO.save(newStudent);
-
-		// show the Student id that you saved
-		int theId = newStudent.getId();
-		System.out.println("Saved student. Generated id: " + theId);
-
-		// retrieve the student based on the ID (PK
-		System.out.println("Retrieving student with id: " + theId);
-		Student myStudent = studentDAO.findbyId(theId);
-
-		// display the student's details
-		System.out.println("Found the student: " + myStudent);
-
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
@@ -80,6 +62,49 @@ public class CrudAppApplication {
 		studentDAO.save(newStudent2);
 
 
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+
+		// create a Student object
+		System.out.println("Creating new student object ... ");
+		Student newStudent = new Student("Mircea", "Popescu", "mircea@pixel.academy");
+
+		// save the Student object to the database
+		System.out.println("Saving the student ...");
+		studentDAO.save(newStudent);
+
+		// show the Student id that you saved
+		int theId = newStudent.getId();
+		System.out.println("Saved student. Generated id: " + theId);
+
+		// retrieve the student based on the ID (PK
+		System.out.println("Retrieving student with id: " + theId);
+		Student myStudent = studentDAO.findbyId(theId);
+
+		// display the student's details
+		System.out.println("Found the student: " + myStudent);
+
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		// get the list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+		// display the list of students
+		for (Student newStudent : theStudents) {
+			System.out.println(newStudent);
+		}
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// return the list of students
+		List<Student> theStudent = studentDAO.findByLastName("Popescu");
+
+		// display the list of students
+		for (Student newStudent : theStudent) {
+			System.out.println(newStudent);
+		}
 	}
 
 }

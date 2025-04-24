@@ -2,6 +2,7 @@ package pixel.academy.crud_app.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.From;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,18 @@ public class StudentDAOImplementation implements StudentDAO {
 
         // create Query
         TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
+
+        // return query results
+        return theQuery.getResultList();
+    }
+
+    @Override
+    public List<Student> findByLastName(String theLastName) {
+        // create Query
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName=:theData", Student.class);
+
+        // set parameters for the query
+        theQuery.setParameter("theData", theLastName);
 
         // return query results
         return theQuery.getResultList();
