@@ -32,24 +32,19 @@ public class CrudAppApplication {
 	private void createStudent(StudentDAO studentDAO) {
 
 		// creating many Student objects
-		System.out.println("Creating 4 student object ...");
+		System.out.println("Creating 1 student object ...");
 		Student newStudent = new Student("John", "Doe", "john@pixelacademy.md");
-
-
 
 		// save the Student objects to the database using DAO
 		System.out.println("Saving the student ...");
 		studentDAO.save(newStudent);
 
-
-
 		// display the ID of the saved students
 		System.out.println("Saved students. Generated id: " + newStudent.getId());
 
-
-
 	}
 	private void createMultipleStudents(StudentDAO studentDAO) {
+
 		// creating many Student objects
 		Student newStudent = new Student("Andrei", "Munteanu", "andrei@pixelacademy.md");
 		Student newStudent1 = new Student("Iulian", "Vataman", "iulic@pixelacademy.md");
